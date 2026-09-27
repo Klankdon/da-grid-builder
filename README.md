@@ -33,36 +33,5 @@ Upload the resulting PNG slices to DA Sta.sh and paste the generated HTML block 
 
 ---
 
-### 3. `.gitignore`
-Prevents accidental commits of temporary uploads, slice caches, PyInstaller build artifacts, or environment files:
 
-```gitignore
-# Byte-compiled / optimized files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Output Slices & User Uploads
-*.png
-*.jpg
-*.jpeg
-*.webp
-*.zip
-shelf_left.png
-item_interactive.png
-shelf_right.png
-
-# Environments
-venv/
-env/
-ENV/
-
-# PyInstaller / Build Artifacts
-build/
-dist/
-*.spec
-
-# IDEs
-.vscode/
-.idea/
 
