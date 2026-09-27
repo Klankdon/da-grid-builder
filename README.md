@@ -9,6 +9,18 @@ A desktop and containerized canvas slicer built with NiceGUI and Pillow for gene
 
 ## Quick Start (Local)
 
+
+## Docker Compose (Recommended)
+
+Run the container in the background with a single command:
+
+```bash
+docker compose up -d
+________________________________________________________________________
+
+Otherwise, build out independently:
+
+
 1. **Install Dependencies:**
    ```bash
    pip install -r requirements.txt
