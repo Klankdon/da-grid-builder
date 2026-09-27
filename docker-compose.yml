@@ -1,0 +1,12 @@
+services:
+  da-grid-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: da-grid-builder
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - HOST=0.0.0.0
+    restart: unless-stopped
