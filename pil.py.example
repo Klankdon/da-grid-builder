@@ -1,0 +1,46 @@
+from PIL import Image
+
+def slice_interactive_shelf(
+    image_path, 
+    crop_box, 
+    target_url, 
+    stash_base_url="https://backend.deviantart.com/stash/"
+):
+    """
+    Slices a master canvas into 3 horizontal sections (left, target item, right)
+    and prints ready-to-use DA Journal HTML code.
+    
+    crop_box: (left, upper, right, lower) coordinates of the interactive item
+    """
+    img = Image.open(image_path)
+    width, height = img.size
+    x1, y1, x2, y2 = crop_box
+
+    # Slice canvas
+    left_slice = img.crop((0, 0, x1, height))
+    item_slice = img.crop((x1, 0, x2, height))
+    right_slice = img.crop((x2, 0, width, height))
+
+    # Save local slices for Sta.sh upload
+    left_slice.save("shelf_left.png")
+    item_slice.save("item_interactive.png")
+    right_slice.save("shelf_right.png")
+
+    # Generate DA HTML Block
+    html_code = f"""
+<div style="display: flex; gap: 0px; align-items: flex-end; line-height: 0;">
+  <img src="{stash_base_url}shelf_left.png" alt="Shelf Left">
+  <a href="{target_url}" target="_blank" title="Clue-tober Target">
+    <img src="{stash_base_url}item_interactive.png" alt="Interactive Item" style="border: none;">
+  </a>
+  <img src="{stash_base_url}shelf_right.png" alt="Shelf Right">
+</div>
+""".strip()
+
+    print("--- Slicing Complete ---")
+    print("Files saved: shelf_left.png, item_interactive.png, shelf_right.png\n")
+    print("--- DA Journal HTML Code ---")
+    print(html_code)
+
+# Example usage:
+# slice_interactive_shelf("exarobibliologist_library.png", (450, 120, 520, 800), "https://www.deviantart.com/deviantai")
